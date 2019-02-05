@@ -1,0 +1,62 @@
+:global {
+  html {
+    height: 100%;
+  }
+
+  body {
+    font-family: ubuntu, sans;
+    font-size: 11px;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .notransition * {
+    transition: none !important;
+  }
+
+  * {
+    user-select: none;
+    cursor: default;
+  }
+
+  div:focus {
+    outline: none;
+  }
+}
+
+.app {
+  height: 100vh;
+  width: 100vw;
+}
+
+.demo-container {
+  @media screen and (min-width: 768px) {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows  : auto auto;
+  }
+  height: 100%;
+}
+
+.demo-container > div > * {
+  vertical-align: middle;
+}
+
+.demo-container > div {
+  min-height: 40vh;
+}
+
+.example1 {
+  background : lightblue;
+
+}
+
+.example2 {
+  background : #333;
+  color: #ddd;
+}
+
+* {
+  // box-sizing: border-box;
+}
