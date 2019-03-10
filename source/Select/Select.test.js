@@ -10,6 +10,6 @@ describe('<MyComponent />', () => {
   });
   it('renders 1 <Select /> components', () => {
     const wrapper = shallow(<Select />);
-    expect(wrapper.text()).toEqual('v');
+    expect(wrapper.text()).toEqual('Please select option');
   });
 });

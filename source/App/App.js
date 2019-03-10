@@ -47,6 +47,22 @@ const programmingLanguages = [
   }
 ];
 
+const fontSizes = [
+  {
+    label: '9px',
+    value: '9'
+  }, {
+    label: '10px',
+    value: '10'
+  }, {
+    label: '11px',
+    value: '11'
+  }, {
+    label: '12px',
+    value: '12'
+  }
+];
+
 export default class App extends PureComponent {
   //
   //  Sample onChange callback
@@ -95,21 +111,9 @@ export default class App extends PureComponent {
             <span>Select a language: </span>
             <Select onChange={this.onChange} defaultSelected='english' optionList={programmingLanguages} />
           </div>
-          <div className={styles.example6}>
-            <span>Select a language: </span>
-            <Select onChange={this.onChange} defaultSelected='english' optionList={programmingLanguages} />
-          </div>
-          <div className={styles.example7}>
-            <span>Select a language: </span>
-            <Select onChange={this.onChange} defaultSelected='english' optionList={languages} />
-          </div>
-          <div className={styles.example8}>
-            <span>Select a language: </span>
-            <Select onChange={this.onChange} defaultSelected='english' optionList={programmingLanguages} />
-          </div>
           <div className={styles.example9}>
-            <span>Select a language: </span>
-            <Select onChange={this.onChange} defaultSelected='english' optionList={programmingLanguages} />
+            <span>Select a font size: </span>
+            <Select onChange={this.onChange} defaultSelected='english' optionList={fontSizes} />
           </div>
         </div>
       </div>
