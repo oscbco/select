@@ -1,15 +1,22 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, fireEvent, cleanup, waitForElement } from 'react-testing-library';
+import 'jest-dom/extend-expect';
 
 import Select from './Select';
 
-describe('<MyComponent />', () => {
+afterEach(cleanup);
+
+describe('inline-select', () => {
+  it('renders 1 <Select /> components', () => {
+    const { getByText, getByTestId, container, asFragment } = render(
+      <Select />
+    );
+    expect(getByText('Please select option')).toBeInTheDocument();
+  });
+  /*
   it('renders 1 <Select /> components', () => {
     const wrapper = shallow(<Select />);
-    expect(wrapper.length).toEqual(1);
+    expect(wrapper.text()).toEqual('Please select option ');
   });
-  it('renders 1 <Select /> components', () => {
-    const wrapper = shallow(<Select />);
-    expect(wrapper.text()).toEqual('Please select option');
-  });
+  */
 });
