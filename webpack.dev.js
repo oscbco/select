@@ -1,5 +1,4 @@
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
-var CleanWebpackPlugin = require('clean-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
 var path = require('path');
@@ -94,7 +93,6 @@ module.exports = {
     }
   },
   plugins: [
-    new CleanWebpackPlugin(['build'], { root: path.resolve(__dirname), verbose: true }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css',
       chunkFilename: 'css/[id].css'
