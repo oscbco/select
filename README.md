@@ -1,2 +1,2 @@
-# text-toggle
+# inline-select
 
