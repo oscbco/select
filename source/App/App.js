@@ -1,34 +1,18 @@
 import React, { PureComponent } from 'react';
 
 import Select from '../Select/Select';
+import InlineSelect from '../InlineSelect/InlineSelect';
 import styles from './_App.scss';
 
-const languages = [
+const anime = [
   {
-    label: 'Spanish',
-    value: 'spanish'
+    label: 'Dragon Bal',
+    value: 'db'
   }, {
-    label: 'English',
-    value: 'english'
+    label: 'Samurai X',
+    value: 'rk'
   }, {
-    value: 'german'
-  }, {
-    label: 'Japanese',
-    value: 'japanese'
-  }, {
-    value: 'chinese'
-  }, {
-    value: 'portuguese'
-  }, {
-    value: 'french'
-  }, {
-    value: 'korean'
-  }, {
-    value: 'latin'
-  }, {
-    value: 'italian'
-  }, {
-    value: 'klingon'
+    value: 'Kemurikusa'
   }
 ];
 
@@ -74,49 +58,49 @@ export default class App extends PureComponent {
 
   render () {
     return (
-      <div className={styles.app + ' ' + styles.appDark}>
-        <div className={styles.demoContainer}>
-          <div className={'one ' + styles.example1}>
-            <span>Select a language: </span>
-            <Select
-              onChange={this.onChange}
-              defaultSelected='english'
-              optionList={languages}
-              placeholder='Please select language' />
-          </div>
-          <div className={styles.example2}>
-            <span>Select a language: </span>
-            <Select
-              onChange={this.onChange}
-              defaultSelected='english'
-              optionList={programmingLanguages}
-              placeholder='Please select language' />
-            <br />
-            <span>Select a language: </span>
-            <Select
-              onChange={this.onChange}
-              defaultSelected='english'
-              optionList={programmingLanguages}
-              placeholder='Please select language' />
-          </div>
-          <div className={styles.example3}>
-            <span>Select a language: </span>
-            <Select onChange={this.onChange} defaultSelected='english' optionList={programmingLanguages} />
-          </div>
-          <div className={styles.example4}>
-            <span>Select a language: </span>
-            <Select onChange={this.onChange} defaultSelected='english' optionList={languages} />
-          </div>
-          <div className={styles.example5}>
-            <span>Select a language: </span>
-            <Select onChange={this.onChange} defaultSelected='english' optionList={programmingLanguages} />
-          </div>
-          <div className={styles.example9}>
-            <span>Select a font size: </span>
-            <Select onChange={this.onChange} defaultSelected='english' optionList={fontSizes} />
+      <React.Fragment>
+        <h1>InlineSelect</h1>
+        A select you can put inside a p tag
+        <div className={styles.app + ' ' + styles.appDark}>
+          <p>Hello, My name is Oscar and I'm a
+            <InlineSelect
+              defaultSelected={{
+                value: 'vb',
+                label: 'Visual Basic'
+              }}
+              placeholder='Programming language'
+              items={programmingLanguages} />
+            developer. I like
+            <InlineSelect
+              defaultSelected={{
+                value: 'vb',
+                label: 'Visual Basic'
+              }}
+              placeholder='Font size'
+              items={fontSizes} />
+          </p>
+          <div className={styles.demoContainer}>
+            <div className={styles.example2}>
+              <span>Select a language: </span>
+              <Select
+                onChange={this.onChange}
+                defaultSelected='english'
+                optionList={programmingLanguages}
+                placeholder='Please select language' />
+              <br />
+              <span>Select a language: </span>
+              <Select
+                onChange={this.onChange}
+                defaultSelected='english'
+                optionList={programmingLanguages}
+                placeholder='Please select language' />
+              <br />
+              <span>Select a font size: </span>
+              <Select onChange={this.onChange} defaultSelected='english' optionList={fontSizes} />
+            </div>
           </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
