@@ -1,32 +1,46 @@
 .inline-select {
   position: relative;
-  background: tomato;
   display: inline-block;
-  z-index: 9999
+  z-index: 9999;
+  outline: none;
+  background: inherit;
+  cursor: default;
 }
-.inline-select-title {
-  background: lightblue;
-  display: block;
+.title {
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
 }
-.inline-select-options {
-  background: red;
+.title svg {
+  vertical-align: middle;
+  justify-self: right;
+  align-self: center;
+  margin-left: 3px;
+}
+.title svg path {
+  stroke: currentColor;
+}
+
+.item-container {
   overflow: hidden;
   float: left;
   width: 100%;
   height: 0;
-  transition: height 0.25s ease;
+  transition: height 0.20s ease;
 }
-.ol {
+.items {
   overflow: visible;
   display: inline-block;
   width: 100%;
 }
-.ol > span{
-  background: lightgreen;
+.items > span {
   width: 100%;
   float: left;
   clear: left;
 }
-.clear {
-  clear: both;
+.active-item {
+  background-color: #454545;
+}
+.item {
+  padding: 2px 4px 2px 4px;
 }

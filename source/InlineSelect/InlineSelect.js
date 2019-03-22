@@ -1,70 +1,96 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './_InlineSelect.scss';
 import { downArrow } from './Shapes';
-
-function getLineHeight (element) {
-  var temp = document.createElement(element.nodeName);
-  temp.setAttribute('style', 'margin:0px;padding:0px;font-family:' + element.style.fontFamily + ';font-size:' + element.style.fontSize);
-  temp.innerHTML = 'test';
-  temp = element.parentNode.appendChild(temp);
-  var ret = temp.clientHeight;
-  temp.parentNode.removeChild(temp);
-  return ret;
-}
+import getLineHeight from './getLineHeight';
+import { getPrevItem, getNextItem } from './cycleArray';
+import { isKeyUp, isKeyDown, isKeyEnter, isKeyEsc } from './isKey';
+import toTitleCase from './titleCase';
 
 export default function InlineSelect (props) {
   const container = useRef(null);
   const inputEl = useRef(null);
   const height = useRef();
   const lineHeight = useRef();
-  const [folded, setFolded] = useState(false);
+  const [isOpen, open] = useState(false);
   const [selected, setSelected] = useState(false);
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(-1);
 
-  const items = props.items.map(function (item, index) {
-    const label = item.label ? item.label : item.value.charAt(0).toUpperCase() + item.value.replace(/_/g, ' ').substring(1);
-    const check = item.value === selected ? '✓' : '';
-    return (
-      <span className={styles.option + ' ' + (active ? styles.activeOption : '')} key={item.value} data-value={item.value}>
-        {label} <span className={styles.check}>{check}</span>
-      </span>
-    );
-  });
+  useEffect(() => {
+    setSelected(props.defaultItem.value);
+  }, []);
 
-  const handleClick = () => {
-    setFolded(!folded);
+  const openSelect = () => {
+    open(!isOpen);
     height.current = inputEl.current.offsetHeight;
     lineHeight.current = getLineHeight(container.current);
   };
 
-  const handleClick2 = (event) => {
-    const { value } = event.target.dataset;
-    setSelected(value);
-    setActive(value);
-    setFolded(false);
+  const handleKeyDown = (event) => {
+    if ([38, 40, 13, 27].includes(event.keyCode)) {
+      event.preventDefault();
+    }
+    if (isOpen === true) {
+      if (isKeyUp(event.keyCode)) {
+        setActive(getPrevItem(props.items, active));
+      } else if (isKeyDown(event.keyCode)) {
+        setActive(getNextItem(props.items, active));
+      } else if (isKeyEnter(event.keyCode) && active !== -1) {
+        setSelected(props.items[active].value);
+      } else if (isKeyEsc(event.keyCode)) {
+        open(false);
+      }
+    } else {
+      if (isKeyDown(event.keyCode)) {
+        open(true);
+      }
+    }
   };
 
   const getSelectedLabel = () => {
-    const element = props.items.find(element => {
-      return element.value === selected;
+    const item = props.items.find(item => {
+      return item.value === selected;
     });
-    if (element === undefined) {
+    if (item === undefined) {
       return props.placeholder;
     }
 
-    return element && element.label ? element.label : element.value.charAt(0).toUpperCase() + element.value.replace(/_/g, ' ').substring(1);
+    return item && item.label ? item.label : toTitleCase(item.value);
   };
 
+  const selectItem = (event) => {
+    const { value } = event.target.dataset;
+    setSelected(value);
+    setActive(value);
+    open(false);
+  };
+
+  const items = props.items.map(function (item, index) {
+    const label = item.label ? item.label : toTitleCase(item.value);
+    const check = item.value === selected ? '✓' : '';
+    const activeItem = index === active ? styles.activeItem : '';
+    return (
+      <span className={styles.item + ' ' + activeItem} key={item.value} data-value={item.value}>
+        {label} <span>{check}</span>
+      </span>
+    );
+  });
+
   return (
-    <span className={styles.inlineSelect} ref={container} style={{ maxHeight: lineHeight.current }}>
-      <span className={styles.inlineSelectTitle} onClick={handleClick}>
+    <span tabIndex={-1} className={styles.inlineSelect} ref={container} style={{ maxHeight: lineHeight.current }} onKeyDown={handleKeyDown} onBlur={() => open(false)}>
+      <span className={styles.title} onClick={openSelect}>
         {getSelectedLabel()} {downArrow(styles.downArrow)}
       </span>
-      <span className={styles.inlineSelectOptions} style={{ height: (folded ? height.current : '0') }} onClick={handleClick2}>
-        <span className={styles.ol} ref={inputEl}>
+      <span className={styles.itemContainer} style={{ height: (isOpen === true ? height.current : '0') }} onClick={selectItem}>
+        <span className={styles.items} ref={inputEl}>
           {items}
         </span>
       </span>
     </span>
   );
 }
+
+InlineSelect.defaultProps = {
+  placeholder: 'Select option',
+  defaultItem: {},
+  items: []
+};
