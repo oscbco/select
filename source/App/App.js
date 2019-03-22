@@ -47,6 +47,22 @@ const fontSizes = [
   }
 ];
 
+const ides = [
+  {
+    label: 'VS Code',
+    value: 'vsc'
+  }, {
+    label: 'Aptana',
+    value: 'aptana'
+  }, {
+    label: 'Netbeans',
+    value: 'netbeans'
+  }, {
+    label: 'Eclipse',
+    value: 'eclipse'
+  }
+];
+
 export default class App extends PureComponent {
   //
   //  Sample onChange callback
@@ -60,46 +76,28 @@ export default class App extends PureComponent {
     return (
       <React.Fragment>
         <h1>InlineSelect</h1>
-        A select you can put inside a p tag
-        <div className={styles.app + ' ' + styles.appDark}>
-          <p>Hello, My name is Oscar and I'm a
-            <InlineSelect
-              defaultSelected={{
-                value: 'vb',
-                label: 'Visual Basic'
-              }}
-              placeholder='Programming language'
-              items={programmingLanguages} />
-            developer. I like
-            <InlineSelect
-              defaultSelected={{
-                value: 'vb',
-                label: 'Visual Basic'
-              }}
-              placeholder='Font size'
-              items={fontSizes} />
-          </p>
-          <div className={styles.demoContainer}>
-            <div className={styles.example2}>
-              <span>Select a language: </span>
-              <Select
-                onChange={this.onChange}
-                defaultSelected='english'
-                optionList={programmingLanguages}
-                placeholder='Please select language' />
-              <br />
-              <span>Select a language: </span>
-              <Select
-                onChange={this.onChange}
-                defaultSelected='english'
-                optionList={programmingLanguages}
-                placeholder='Please select language' />
-              <br />
-              <span>Select a font size: </span>
-              <Select onChange={this.onChange} defaultSelected='english' optionList={fontSizes} />
-            </div>
-          </div>
-        </div>
+        A react select widget you can put inside a p tag. Just like its native counterpart
+        <h2>Examples</h2>
+
+        <h3>Bio</h3>
+
+        <p className={styles.bio}>
+          Hello. I am a &nbsp;
+          <InlineSelect items={programmingLanguages} />
+          &nbsp; programmer. I prefer reading in a &nbsp;
+          <InlineSelect placeholder='Font size' items={fontSizes}
+            defaultItem={{
+              value: '12',
+              label: '12px'
+            }} />
+          &nbsp;font size. My favorite IDE is &nbsp;
+          <InlineSelect placeholder='Select IDE' items={ides}
+            defaultItem={{
+              value: 'aptana',
+              label: 'Aptana'
+            }} />
+          &nbsp;
+        </p>
       </React.Fragment>
     );
   }
