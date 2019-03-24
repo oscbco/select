@@ -5,40 +5,13 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "node",
-      "request": "launch",
-      "name": "Electron: Main",
-      "protocol": "inspector",
-      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
-      "runtimeArgs": [
-          "--remote-debugging-port=9224",
-          "./main/development",
-      ]
-    },
-    {
-      "name": "Electron: Renderer",
       "type": "chrome",
-      "request": "attach",
-      "webRoot": "${workspaceFolder}",
-      "port": 9224,
-      "sourceMaps": true,
-      "sourceMapPathOverrides": {
-        "webpack:///./renderer/*": "${workspaceRoot}/renderer/*"
-      }// ,
-      // "skipFiles": [
-      //   "${workspaceFolder}/node_modules/**/*.js"
-      //   // "<node_internals>/**/*.js"
-      // ]
+      "request": "launch",
+      "name": "Launch Chrome",
+      "url": "http://localhost:9000",
+      "runtimeArgs": ["--password-store=basic"],
+      "webRoot": "${workspaceFolder}"
     }
-  ],
-  "compounds": [
-      {
-          "name": "Electron: All",
-          "configurations": [
-              "Electron: Main",
-              "Electron: Renderer"
-          ]
-      }
   ]
 }
 //
