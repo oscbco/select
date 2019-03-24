@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import styles from './_InlineSelect.scss';
+import css from './_InlineSelect.scss';
 import { downArrow } from './Shapes';
 import getLineHeight from './getLineHeight';
 import { getPrevItem, getNextItem } from './cycleArray';
@@ -14,7 +14,7 @@ export default function InlineSelect (props) {
   const [isOpen, open] = useState(false);
   const [selected, setSelected] = useState(false);
   const [active, setActive] = useState(-1);
-
+  const [focused, setFocused] = useState(false);
   useEffect(() => {
     setSelected(props.defaultItem.value);
   }, []);
@@ -23,6 +23,11 @@ export default function InlineSelect (props) {
     open(!isOpen);
     height.current = inputEl.current.offsetHeight;
     lineHeight.current = getLineHeight(container.current);
+  };
+
+  const handleBlur = () => {
+    setFocused(false);
+    open(false);
   };
 
   const handleKeyDown = (event) => {
@@ -67,21 +72,21 @@ export default function InlineSelect (props) {
   const items = props.items.map(function (item, index) {
     const label = item.label ? item.label : toTitleCase(item.value);
     const check = item.value === selected ? '✓' : '';
-    const activeItem = index === active ? styles.activeItem : '';
+    const activeItem = index === active ? css.activeItem : '';
     return (
-      <span className={styles.item + ' ' + activeItem} key={item.value} data-value={item.value}>
+      <span className={css.item + ' ' + activeItem} key={item.value} data-value={item.value}>
         {label} <span>{check}</span>
       </span>
     );
   });
-
+  const inlineSelectClass = css.inlineSelect + ' ' + (isOpen === true ? css.opened : '') + ' ' + css[props.theme];
   return (
-    <span tabIndex={-1} className={styles.inlineSelect} ref={container} style={{ maxHeight: lineHeight.current }} onKeyDown={handleKeyDown} onBlur={() => open(false)}>
-      <span className={styles.title} onClick={openSelect}>
-        {getSelectedLabel()} {downArrow(styles.downArrow)}
+    <span tabIndex={-1} className={inlineSelectClass} ref={container} style={{ zIndex: (focused ? '9999' : '1') }} onKeyDown={handleKeyDown} onFocus={() => setFocused(true)} onBlur={() => handleBlur(false)}>
+      <span className={css.title} onClick={openSelect}>
+        {getSelectedLabel()} {downArrow(css.downArrow)}
       </span>
-      <span className={styles.itemContainer} style={{ height: (isOpen === true ? height.current : '0') }} onClick={selectItem}>
-        <span className={styles.items} ref={inputEl}>
+      <span className={css.itemContainer} style={{ height: (isOpen === true ? height.current : '0') }} onClick={selectItem}>
+        <span className={css.items} ref={inputEl}>
           {items}
         </span>
       </span>
@@ -92,5 +97,6 @@ export default function InlineSelect (props) {
 InlineSelect.defaultProps = {
   placeholder: 'Select option',
   defaultItem: {},
+  theme: 'dark',
   items: []
 };
