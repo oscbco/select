@@ -8,14 +8,14 @@ var path = require('path');
 module.exports = {
   entry: [
     // 'react-hot-loader/patch',
-    path.join(__dirname, 'source', 'Select', 'Select.js')
+    path.join(__dirname, 'source', 'InlineSelect', 'InlineSelect.js')
   ],
   output: {
     filename: 'build/index.js',
     chunkFilename: 'build/index.js',
     path: path.resolve(__dirname),
     publicPath: './',
-    library: 'Select',
+    library: 'InlineSelect',
     // libraryExport: 'default',
     libraryTarget: 'umd'
   },
@@ -90,7 +90,10 @@ module.exports = {
     }
   },
   plugins: [
-    new CleanWebpackPlugin(['build'], { root: path.resolve(__dirname), verbose: true }),
+    new CleanWebpackPlugin({
+      dry: true,
+      cleanOnceBeforeBuildPatterns: ['build']
+    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
