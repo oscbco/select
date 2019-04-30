@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import css from './_InlineSelect.scss';
 import { downArrow } from './Shapes';
-import getLineHeight from './getLineHeight';
 import { getPrevItem, getNextItem } from './cycleArray';
 import { isKeyUp, isKeyDown, isKeyEnter, isKeyEsc } from './isKey';
 import toTitleCase from './titleCase';
@@ -10,7 +9,6 @@ export default function InlineSelect (props) {
   const container = useRef(null);
   const inputEl = useRef(null);
   const height = useRef();
-  const lineHeight = useRef();
   const [isOpen, open] = useState(false);
   const [selected, setSelected] = useState(false);
   const [active, setActive] = useState(-1);
@@ -22,7 +20,6 @@ export default function InlineSelect (props) {
   const openSelect = () => {
     open(!isOpen);
     height.current = inputEl.current.offsetHeight;
-    lineHeight.current = getLineHeight(container.current);
   };
 
   const handleBlur = () => {
