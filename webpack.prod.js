@@ -11,12 +11,11 @@ module.exports = {
     path.join(__dirname, 'source', 'InlineSelect', 'InlineSelect.js')
   ],
   output: {
-    filename: 'build/index.js',
-    chunkFilename: 'build/index.js',
+    filename: 'index.js',
+    chunkFilename: 'index.js',
     path: path.resolve(__dirname),
     publicPath: './',
-    library: 'InlineSelect',
-    // libraryExport: 'default',
+    library: 'Select',
     libraryTarget: 'umd'
   },
   mode: 'production',
@@ -70,7 +69,7 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 1024,
-              name: 'build/images/[name].[ext]'
+              name: 'images/[name].[ext]'
             }
           }
         ]
@@ -101,8 +100,8 @@ module.exports = {
       sourceMap: false
     }),
     new MiniCssExtractPlugin({
-      filename: 'build/css/[name].css',
-      chunkFilename: 'build/css/[id].css'
+      filename: '[name].css',
+      chunkFilename: '[id].css'
     }),
     new BundleAnalyzerPlugin()
   ],

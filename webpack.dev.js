@@ -9,8 +9,8 @@ module.exports = {
     path.join(__dirname, 'source', 'index.js')
   ],
   output: {
-    filename: 'build/[name].js',
-    chunkFilename: 'build/[name].js',
+    filename: '[name].js',
+    chunkFilename: '[name].js',
     path: path.resolve(__dirname, 'build'),
     publicPath: ''
   },
@@ -94,8 +94,8 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'css/[name].css',
-      chunkFilename: 'css/[id].css'
+      filename: '[name].css',
+      chunkFilename: '[id].css'
     }),
     new HtmlWebpackPlugin({
       title: '@oscbco/select',
