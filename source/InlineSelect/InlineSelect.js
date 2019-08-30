@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import css from './_InlineSelect.scss';
-import { downArrow } from './Shapes';
+import { ShpDownArrow } from './Shapes';
 import { getPrevItem, getNextItem } from './cycleArray';
 import { isKeyUp, isKeyDown, isKeyEnter, isKeyEsc } from './isKey';
 import toTitleCase from './titleCase';
@@ -64,6 +64,7 @@ export default function InlineSelect (props) {
     setSelected(value);
     setActive(value);
     open(false);
+    props.onChange(value);
   };
 
   const items = props.items.map(function (item, index) {
@@ -80,7 +81,7 @@ export default function InlineSelect (props) {
   return (
     <span tabIndex={-1} className={inlineSelectClass} ref={container} style={{ zIndex: (focused ? '9999' : '1') }} onKeyDown={handleKeyDown} onFocus={() => setFocused(true)} onBlur={() => handleBlur(false)}>
       <span className={css.title} onClick={openSelect}>
-        {getSelectedLabel()} {downArrow(css.downArrow)}
+        {getSelectedLabel()} <span className={css.icon}><ShpDownArrow /></span>
       </span>
       <span className={css.itemContainer} style={{ height: (isOpen === true ? height.current : '0') }} onClick={selectItem}>
         <span className={css.items} ref={inputEl}>
@@ -95,5 +96,6 @@ InlineSelect.defaultProps = {
   placeholder: 'Select option',
   defaultItem: {},
   theme: 'dark',
-  items: []
+  items: [],
+  onChange: () => {}
 };
