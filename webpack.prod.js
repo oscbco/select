@@ -1,7 +1,6 @@
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-var { CleanWebpackPlugin } = require('clean-webpack-plugin');
 var webpack = require('webpack');
 var path = require('path');
 
@@ -89,10 +88,6 @@ module.exports = {
     }
   },
   plugins: [
-    new CleanWebpackPlugin({
-      dry: true,
-      cleanOnceBeforeBuildPatterns: ['build']
-    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     }),

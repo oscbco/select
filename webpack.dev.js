@@ -11,12 +11,12 @@ module.exports = {
   output: {
     filename: '[name].js',
     chunkFilename: '[name].js',
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname),
     publicPath: ''
   },
   mode: 'development',
   devServer: {
-    port: 9000,
+    port: 9001,
     historyApiFallback: true,
     hot: true
   },
