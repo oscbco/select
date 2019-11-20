@@ -71,17 +71,17 @@ export default function InlineSelect (props) {
   const items = props.items.map(function (item, index) {
     const label = item.label ? item.label : toTitleCase(item.value);
     const check = item.value === selected ? '✓' : '';
+
     return (
       <span className={css.item + ' ' + props.classes.item} data-is-active={index === active} key={item.value} data-value={item.value}>
         {label} <span>{check}</span>
       </span>
     );
   });
-  const inlineSelectClass = css.inlineSelect + ' ' + (isOpen === true ? css.opened : '') + ' ' + css[props.theme];
 
   return (
-    <span tabIndex={-1} className={inlineSelectClass + ' ' + props.classes.select} ref={container} style={{ zIndex: (focused ? '9999' : '1') }} onKeyDown={handleKeyDown} onFocus={() => setFocused(true)} onBlur={() => handleBlur(false)}>
-      <span className={css.title + ' ' + props.classes.title} onClick={openSelect}>
+    <span tabIndex={-1} className={css.inlineSelect + ' ' + props.classes.select} ref={container} data-is-focused={focused} onKeyDown={handleKeyDown} onFocus={() => setFocused(true)} onBlur={() => handleBlur(false)}>
+      <span className={css.title + ' ' + props.classes.title} onClick={openSelect} data-is-open={isOpen} >
         {getSelectedLabel()} <span className={css.icon}><ShpDownArrow /></span>
       </span>
       <span className={css.itemContainer + ' ' + props.classes.itemContainer} style={{ height: (isOpen === true ? height.current : '0') }} onClick={selectItem}>
@@ -97,14 +97,12 @@ InlineSelect.defaultProps = {
   classes: {},
   placeholder: 'Select option',
   defaultItem: {},
-  theme: '',
   items: [],
   onChange: () => {}
 };
 
 InlineSelect.propTypes = {
   placeholder: PropTypes.string,
-  theme: PropTypes.string,
   items: PropTypes.array,
   onChange: PropTypes.func,
   defaultItem: PropTypes.object,

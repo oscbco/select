@@ -5,6 +5,10 @@
   outline: none;
   cursor: default;
   max-height: 0px;
+  z-index: 1;
+}
+.inline-select[data-is-focused="true"] {
+  z-index: 9999;
 }
 .title {
   display: flex;
@@ -33,7 +37,6 @@
   padding: 3px;
 }
 .item {
-  /* padding: 2px 4px 2px 4px;*/
   width: calc(100% - 6px);
   float: left;
   clear: left;

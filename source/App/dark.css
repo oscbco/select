@@ -1,11 +1,10 @@
-/*
-.dark-opened {
-.title {
+.dark-title {}
+
+.dark-title[data-is-open="true"] {
   transition-delay: 0s;
-  background-color: #555;
+  background-color: #333;
 }
-}
-*/
+
 .dark-title:hover {
   color: white;
   stroke: white;

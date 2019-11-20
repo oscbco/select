@@ -1,6 +1,6 @@
 {
   "name": "@oscbco/select",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Select",
   "main": "index.js",
   "scripts": {

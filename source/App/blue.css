@@ -2,8 +2,11 @@
   border-radius: 3px;
 }
 
-.blue-title {
-  background: lightsteelblue;
+.blue-title {}
+
+.blue-title[data-is-open="true"] {
+  transition-delay: 0s;
+  background-color: lightsteelblue;
 }
 
 .blue-item-container {
