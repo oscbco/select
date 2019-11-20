@@ -1,9 +1,12 @@
 {
   "vsicons.presets.angular": false,
-  "standard.enable": true,
+  "standard.enable": false,
   "standard.semistandard": true,
   "standard.options": {
     "global": ["describe", "it", "test", "expect", "debugger", "localStorage", "afterEach"],
     "parser": "babel-eslint"
-  }
+  },
+  "eslint.enable": true,
+  "eslint.alwaysShowStatus": true,
+  "eslint.lintTask.enable": true
 }
