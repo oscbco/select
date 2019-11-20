@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 
 import InlineSelect from '../InlineSelect/InlineSelect';
 import styles from './_App.scss';
+import './blue.css';
+import './dark.css';
 
 import * as data from './data';
 
@@ -16,7 +18,7 @@ export default class App extends PureComponent {
 
   render () {
     return (
-      <React.Fragment>
+      <>
         <h1>InlineSelect</h1>
         A react select widget you can put inside a p tag. Just like its native counterpart
         <h2>Examples</h2>
@@ -26,9 +28,14 @@ export default class App extends PureComponent {
 
         <p className={styles.section + ' ' + styles.bio}>
           Hello. I am a &nbsp;
-          <InlineSelect items={data.programmingLanguages} onChange={this.onChange} />
+          <InlineSelect items={data.programmingLanguages} onChange={this.onChange}
+            classes={{
+              title: 'dark-title',
+              itemContainer: 'dark-item-container',
+              item: 'dark-item'
+            }} />
           &nbsp; programmer. I prefer reading in a &nbsp;
-          <InlineSelect placeholder='Font size' items={data.fontSizes} theme='dark'
+          <InlineSelect items={data.fontSizes} placeholder='Font size' theme='dark'
             defaultItem={{
               value: '12',
               label: '12px'
@@ -38,6 +45,20 @@ export default class App extends PureComponent {
             defaultItem={{
               value: 'aptana',
               label: 'Aptana'
+            }} />
+          &nbsp;
+        </p>
+
+        <h3>Using global css classes. Blue example</h3>
+
+        <p className=''>
+          Select dinosaur group: <InlineSelect placeholder='Dinosaur group' items={data.dinosaurGroups} defaultItem={{ value: 'theropoda' }}
+            classes={{
+              select: 'blue-select',
+              title: 'blue-title',
+              itemContainer: 'blue-item-container',
+              items: 'blue-items',
+              item: 'blue-item'
             }} />
           &nbsp;
         </p>
@@ -58,24 +79,7 @@ export default class App extends PureComponent {
           &nbsp; period
         </p>
 
-        <p className={styles.section + ' ' + styles.bio}>
-          Hello. I am a &nbsp;
-          <InlineSelect items={data.programmingLanguages} />
-          &nbsp; programmer. I prefer reading in a &nbsp;
-          <InlineSelect placeholder='Font size' items={data.fontSizes} theme='dark'
-            defaultItem={{
-              value: '12',
-              label: '12px'
-            }} />
-          &nbsp;font size. My favorite IDE is &nbsp;
-          <InlineSelect placeholder='Select IDE' items={data.ides} theme='dark'
-            defaultItem={{
-              value: 'aptana',
-              label: 'Aptana'
-            }} />
-          &nbsp;
-        </p>
-      </React.Fragment>
+      </>
     );
   }
 }

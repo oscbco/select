@@ -1,0 +1,28 @@
+.blue-select {
+  border-radius: 3px;
+}
+
+.blue-title {
+  background: lightsteelblue;
+}
+
+.blue-item-container {
+  border-radius: 0 0 3px 3px;
+}
+
+.blue-items {
+  background: lightblue;
+}
+
+.blue-item {
+  background: inherit;
+  color: #333;
+}
+
+.blue-item[data-is-active="true"] {
+  filter: brightness(110%);
+}
+
+.blue-item:hover {
+  filter: brightness(120%);
+}

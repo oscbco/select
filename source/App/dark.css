@@ -1,0 +1,32 @@
+/*
+.dark-opened {
+.title {
+  transition-delay: 0s;
+  background-color: #555;
+}
+}
+*/
+.dark-title:hover {
+  color: white;
+  stroke: white;
+}
+.dark-item-container {
+  box-shadow: 0px 1px 3px -1px black;
+  background-color: #3F3F3F;
+  border-radius: 0 0 2px 2px;
+}
+.dark-item {
+  background-color: #3F3F3F;
+  white-space: nowrap;
+}
+.dark-item[data-is-active="true"] {
+  background: red;
+}
+.dark-item:hover {
+  color: white;
+  background-color: #555;
+}
+.dark-active-item {
+  background-color: #454545;
+}
+

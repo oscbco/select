@@ -126,3 +126,23 @@ export const tons = [
     value: '19'
   }
 ];
+
+export const dinosaurGroups = [
+  {
+    value: 'stegosaruria'
+  }, {
+    value: 'ankylosauria'
+  }, {
+    value: 'ornothopoda'
+  }, {
+    value: 'ceratopsia'
+  }, {
+    value: 'pachycephalosauria'
+  }, {
+    value: 'prosauropoda'
+  }, {
+    value: 'sauropoda'
+  }, {
+    value: 'theropoda'
+  }
+];
