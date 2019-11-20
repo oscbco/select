@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import css from './_InlineSelect.scss';
 import { ShpDownArrow } from './Shapes';
 import { getPrevItem, getNextItem } from './cycleArray';
@@ -70,21 +71,21 @@ export default function InlineSelect (props) {
   const items = props.items.map(function (item, index) {
     const label = item.label ? item.label : toTitleCase(item.value);
     const check = item.value === selected ? '✓' : '';
-    const activeItem = index === active ? css.activeItem : '';
     return (
-      <span className={css.item + ' ' + activeItem} key={item.value} data-value={item.value}>
+      <span className={css.item + ' ' + props.classes.item} data-is-active={index === active} key={item.value} data-value={item.value}>
         {label} <span>{check}</span>
       </span>
     );
   });
   const inlineSelectClass = css.inlineSelect + ' ' + (isOpen === true ? css.opened : '') + ' ' + css[props.theme];
+
   return (
-    <span tabIndex={-1} className={inlineSelectClass} ref={container} style={{ zIndex: (focused ? '9999' : '1') }} onKeyDown={handleKeyDown} onFocus={() => setFocused(true)} onBlur={() => handleBlur(false)}>
-      <span className={css.title} onClick={openSelect}>
+    <span tabIndex={-1} className={inlineSelectClass + ' ' + props.classes.select} ref={container} style={{ zIndex: (focused ? '9999' : '1') }} onKeyDown={handleKeyDown} onFocus={() => setFocused(true)} onBlur={() => handleBlur(false)}>
+      <span className={css.title + ' ' + props.classes.title} onClick={openSelect}>
         {getSelectedLabel()} <span className={css.icon}><ShpDownArrow /></span>
       </span>
-      <span className={css.itemContainer} style={{ height: (isOpen === true ? height.current : '0') }} onClick={selectItem}>
-        <span className={css.items} ref={inputEl}>
+      <span className={css.itemContainer + ' ' + props.classes.itemContainer} style={{ height: (isOpen === true ? height.current : '0') }} onClick={selectItem}>
+        <span className={css.items + ' ' + props.classes.items} ref={inputEl}>
           {items}
         </span>
       </span>
@@ -93,9 +94,19 @@ export default function InlineSelect (props) {
 }
 
 InlineSelect.defaultProps = {
+  classes: {},
   placeholder: 'Select option',
   defaultItem: {},
-  theme: 'dark',
+  theme: '',
   items: [],
   onChange: () => {}
 };
+
+InlineSelect.propTypes = {
+  placeholder: PropTypes.string,
+  theme: PropTypes.string,
+  items: PropTypes.array,
+  onChange: PropTypes.func,
+  defaultItem: PropTypes.object,
+  classes: PropTypes.object
+}

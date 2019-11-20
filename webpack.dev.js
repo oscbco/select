@@ -37,7 +37,28 @@ module.exports = {
           }
         ]
       }, {
-        test: /\.(scss|css)$/,
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: false,
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'resolve-url-loader',
+            options: {
+              debug: true
+            }
+          }
+        ]
+      }, {
+        test: /\.scss$/,
         exclude: /node_modules/,
         use: [
           {
