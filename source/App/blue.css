@@ -5,7 +5,6 @@
 .blue-title {}
 
 .blue-title[data-is-open="true"] {
-  transition-delay: 0s;
   background-color: lightsteelblue;
 }
 
