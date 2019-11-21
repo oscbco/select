@@ -13,9 +13,16 @@
 .title {
   display: flex;
   justify-content: center;
-  justify-content: space-around;
+  justify-content: space-between;
   transition-delay: 0.2s;
   border-radius: 2px 2px 0 0;
+  padding-left: 3px;
+}
+.title[data-is-open="true"] {
+  transition-delay: 0s;
+}
+.inline-select[data-is-down="false"] .title[data-is-open="true"] {
+  border-radius: 0 0 2px 2px;
 }
 .down-arrow {
   justify-self: right;
@@ -29,12 +36,23 @@
   height: 0;
   transition: height 0.2s ease;
 }
+.inline-select[data-is-down="false"] .item-container {
+  position: relative;
+  transform: rotate(180deg);
+  transform-origin: top;
+}
 .items {
   max-height: 300px;
   overflow: auto;
   display: inline-block;
   width: 100%;
   padding: 3px;
+}
+.inline-select[data-is-down="false"] .items {
+  position: relative;
+  transform: rotate(180deg);
+  transform-origin: center;
+  left: -6px;
 }
 .item {
   width: calc(100% - 6px);
@@ -88,10 +106,7 @@
   background: inherit;
   flex-grow: 0;
   line-height: 130%;
-}
-
-.icon:nth-of-type(2) {
-  margin-left: 40px;
+  margin-right: 3px;
 }
 
 .icon path {

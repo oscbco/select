@@ -9,6 +9,7 @@ import toTitleCase from './titleCase';
 export default function InlineSelect (props) {
   const container = useRef(null);
   const inputEl = useRef(null);
+  const title = useRef(null);
   const height = useRef();
   const [isOpen, open] = useState(false);
   const [selected, setSelected] = useState(false);
@@ -79,12 +80,19 @@ export default function InlineSelect (props) {
     );
   });
 
+  let isDown = true;
+  if (container.current) {
+    const rect = container.current.getBoundingClientRect();
+    isDown = (window.innerHeight - rect.top + rect.height) > inputEl.current.offsetHeight;
+  }
+  console.log(isDown);
+
   return (
-    <span tabIndex={-1} className={css.inlineSelect + ' ' + props.classes.select} ref={container} data-is-focused={focused} onKeyDown={handleKeyDown} onFocus={() => setFocused(true)} onBlur={() => handleBlur(false)}>
-      <span className={css.title + ' ' + props.classes.title} onClick={openSelect} data-is-open={isOpen} >
+    <span tabIndex={-1} className={css.inlineSelect + ' ' + props.classes.select} ref={container} data-is-focused={focused} data-is-down={isDown} onKeyDown={handleKeyDown} onFocus={() => setFocused(true)} onBlur={() => handleBlur(false)}>
+      <span className={css.title + ' ' + props.classes.title} onClick={openSelect} data-is-open={isOpen} ref={title} >
         {getSelectedLabel()} <span className={css.icon}><ShpDownArrow /></span>
       </span>
-      <span className={css.itemContainer + ' ' + props.classes.itemContainer} style={{ height: (isOpen === true ? height.current : '0') }} onClick={selectItem}>
+      <span className={css.itemContainer + ' ' + props.classes.itemContainer} style={{ height: (isOpen === true ? height.current : '0'), marginTop: (!isDown ? (title.current ? -(title.current.offsetHeight - 1) : 0) : 0) }} onClick={selectItem}>
         <span className={css.items + ' ' + props.classes.items} ref={inputEl}>
           {items}
         </span>
