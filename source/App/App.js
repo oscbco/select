@@ -54,13 +54,11 @@ export default class App extends PureComponent {
         <p className=''>
           Select dinosaur group: <InlineSelect placeholder='Dinosaur group' items={data.dinosaurGroups} defaultItem={{ value: 'theropoda' }}
             classes={{
-              select: 'blue-select',
               title: 'blue-title',
               itemContainer: 'blue-item-container',
               items: 'blue-items',
               item: 'blue-item'
             }} />
-          &nbsp;
         </p>
 
         <h3>Fill the blanks</h3>

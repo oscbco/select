@@ -74,7 +74,7 @@ export default function InlineSelect (props) {
     const check = item.value === selected ? '✓' : '';
 
     return (
-      <span className={css.item + ' ' + props.classes.item} data-is-active={index === active} key={item.value} data-value={item.value}>
+      <span className={css.item + ' ' + (props.classes.item || 'oscbco-select-item')} data-is-active={index === active} key={item.value} data-value={item.value}>
         {label} <span>{check}</span>
       </span>
     );
@@ -85,15 +85,14 @@ export default function InlineSelect (props) {
     const rect = container.current.getBoundingClientRect();
     isDown = (window.innerHeight - rect.top + rect.height) > inputEl.current.offsetHeight;
   }
-  console.log(isDown);
 
   return (
-    <span tabIndex={-1} className={css.inlineSelect + ' ' + props.classes.select} ref={container} data-is-focused={focused} data-is-down={isDown} onKeyDown={handleKeyDown} onFocus={() => setFocused(true)} onBlur={() => handleBlur(false)}>
-      <span className={css.title + ' ' + props.classes.title} onClick={openSelect} data-is-open={isOpen} ref={title} >
+    <span tabIndex={-1} className={css.inlineSelect + ' ' + (props.classes.select || 'oscbco-select')} ref={container} data-is-focused={focused} data-is-down={isDown} onKeyDown={handleKeyDown} onFocus={() => setFocused(true)} onBlur={() => handleBlur(false)}>
+      <span className={css.title + ' ' + (props.classes.title || 'oscbco-select-title')} onClick={openSelect} data-is-open={isOpen} ref={title} >
         {getSelectedLabel()} <span className={css.icon}><ShpDownArrow /></span>
       </span>
-      <span className={css.itemContainer + ' ' + props.classes.itemContainer} style={{ height: (isOpen === true ? height.current : '0'), marginTop: (!isDown ? (title.current ? -(title.current.offsetHeight - 1) : 0) : 0) }} onClick={selectItem}>
-        <span className={css.items + ' ' + props.classes.items} ref={inputEl}>
+      <span className={css.itemContainer + ' ' + (props.classes.itemContainer || 'oscbco-select-item-container')} style={{ height: (isOpen === true ? height.current : '0'), marginTop: (!isDown ? (title.current ? -(title.current.offsetHeight - 1) : 0) : 0) }} onClick={selectItem}>
+        <span className={css.items + ' ' + (props.classes.items || 'oscbco-select-items')} ref={inputEl}>
           {items}
         </span>
       </span>
