@@ -63,10 +63,12 @@ export default function InlineSelect (props) {
 
   const selectItem = (event) => {
     const { value } = event.target.dataset;
-    setSelected(value);
-    setActive(value);
-    open(false);
-    props.onChange(value);
+    if (value) {
+      setSelected(value);
+      setActive(value);
+      open(false);
+      props.onChange(value);
+    }
   };
 
   const items = props.items.map(function (item, index) {

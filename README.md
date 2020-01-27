@@ -2,6 +2,8 @@
 
 A React select control you can inline.
 
+![Demo](https://oscbco.github.io/images/select-demo.gif)
+
 If you need a multi-select (or tag select) please check out [@oscbco/multi-select](https://github.com/oscbco/multi-select)
 
 ## Props

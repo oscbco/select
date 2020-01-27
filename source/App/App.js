@@ -39,12 +39,20 @@ export default class App extends PureComponent {
             defaultItem={{
               value: '12',
               label: '12px'
+            }} classes={{
+              title: 'dark-title',
+              itemContainer: 'dark-item-container',
+              item: 'dark-item'
             }} />
           &nbsp;font size. My favorite IDE is &nbsp;
           <InlineSelect placeholder='Select IDE' items={data.ides} theme='dark'
             defaultItem={{
               value: 'aptana',
               label: 'Aptana'
+            }} classes={{
+              title: 'dark-title',
+              itemContainer: 'dark-item-container',
+              item: 'dark-item'
             }} />
           &nbsp;
         </p>
