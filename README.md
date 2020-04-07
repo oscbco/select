@@ -4,7 +4,7 @@ A React select control you can inline.
 
 ![Demo](https://oscbco.github.io/images/select-demo.gif)
 
-If you need a multi-select (or tag select) please check out [@oscbco/multi-select](https://github.com/oscbco/multi-select)
+If you need a multi-select (or tag select) please check out [@oscbco/multi-select](https://github.com/oscbco/multi-select), or a select that can be used with flexbox use [@oscbco/block-select](https://github.com/oscbco/block-select)
 
 ## Props
 - `items`: This is an array of items available to select, it consists of objects with at least the property: `value`.
@@ -12,7 +12,7 @@ Additionally an item object can have the following property:
 
   - `label`: This is the text presented to the user, if it's not present then the `value` is title cased and used instead.
 
-  Future versions will also support:
+  Future versions may also support:
     - `fg`: Text color of the item
     - `bg`: Background color of the item
     - `icon`: svg icon to be placed next to the label
@@ -61,7 +61,7 @@ To run the examples:
       $ npm install
       $ npm start
 
-  Visit [http://localhost:9001](http://localhost:9001) to see and edit the examples. The development server is set up to be available from everywhere even your mobile phone in your LAN.
+  Visit [http://localhost:9001](http://localhost:9001) to see and edit the examples. The development server is set up to be available from everywhere, even your mobile phone in your LAN.
 
 ## Features:
 - Opens dropdown with the down key
