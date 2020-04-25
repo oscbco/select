@@ -1,6 +1,6 @@
 {
   "name": "@oscbco/select",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Select control that can be inlined",
   "main": "index.js",
   "scripts": {
