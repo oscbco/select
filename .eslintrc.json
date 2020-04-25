@@ -12,7 +12,11 @@
   ],
   "globals": {
     "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
+    "SharedArrayBuffer": "readonly",
+    "expect": "readonly",
+    "it": "readonly",
+    "afterEach": "readonly",
+    "describe": "readonly"
   },
   "parser": "babel-eslint",
   "parserOptions": {

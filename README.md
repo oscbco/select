@@ -6,6 +6,11 @@ A React select control you can inline.
 
 If you need a multi-select (or tag select) please check out [@oscbco/multi-select](https://github.com/oscbco/multi-select), or a select that can be used with flexbox use [@oscbco/block-select](https://github.com/oscbco/block-select)
 
+## Installation
+  ```console
+    npm install @oscbco/select
+  ```
+
 ## Props
 - `items`: This is an array of items available to select, it consists of objects with at least the property: `value`.
 Additionally an item object can have the following property:

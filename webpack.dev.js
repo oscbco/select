@@ -5,7 +5,7 @@ var path = require('path');
 
 module.exports = {
   entry: [
-    // 'react-hot-loader/patch',
+    'react-hot-loader/patch',
     path.join(__dirname, 'source', 'index.js')
   ],
   output: {
@@ -16,7 +16,7 @@ module.exports = {
   },
   mode: 'development',
   devServer: {
-    port: 9001,
+    port: 9000,
     historyApiFallback: true,
     hot: true
   },
