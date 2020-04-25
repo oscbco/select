@@ -29,7 +29,7 @@ describe('inline-select', () => {
   });
 
   it('Shows correct title after clicking on item "9px" ', () => {
-    const { queryByText, queryAllByText } = render(<InlineSelect defaultItem='english' items={fontSizes} />);
+    const { queryByText, queryAllByText } = render(<InlineSelect defaultItem={{ value: 'english' }} items={fontSizes} />);
     expect(queryAllByText('Select option').length).toBe(1);
     fireEvent.click(queryByText('Select option'));
     expect(queryAllByText('Select option').length).toBe(1);
@@ -40,7 +40,7 @@ describe('inline-select', () => {
   });
 
   it('Shows correct title after clicking on item "10px" ', () => {
-    const { queryByText, queryAllByText } = render(<InlineSelect defaultItem='english' items={fontSizes} />);
+    const { queryByText, queryAllByText } = render(<InlineSelect defaultItem={{ value: 'english' }} items={fontSizes} />);
     expect(queryAllByText('Select option').length).toBe(1);
     fireEvent.click(queryByText('Select option'));
     expect(queryAllByText('Select option').length).toBe(1);
