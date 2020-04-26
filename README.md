@@ -66,7 +66,7 @@ To run the examples:
       $ npm install
       $ npm start
 
-  Visit [http://localhost:9001](http://localhost:9001) to see and edit the examples. The development server is set up to be available from everywhere, even your mobile phone in your LAN.
+  Visit [http://localhost:9000](http://localhost:9000) to see and edit the examples. The development server is set up to be available from everywhere, even your mobile phone in your LAN.
 
 ## Features:
 - Opens dropdown with the down key
@@ -76,3 +76,8 @@ To run the examples:
 - Can receive focus but can't be reached with tab,
 - Completely customizable with the classes prop.
 - It can be inlined with sibling elements and even used multiple times inside a paragraph
+
+## Tests
+  ```console
+    npm test
+  ```
