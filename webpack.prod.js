@@ -1,4 +1,4 @@
-// var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 var webpack = require('webpack');
@@ -97,8 +97,10 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css'
-    }) //,
-    // new BundleAnalyzerPlugin()
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static'
+    })
   ],
   externals: {
     react: {
