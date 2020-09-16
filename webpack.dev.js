@@ -46,7 +46,9 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              modules: false,
+              modules: {
+                exportLocalsConvention: 'camelCase'
+              },
               sourceMap: true
             }
           },
@@ -67,8 +69,9 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              modules: true,
-              localsConvention: 'camelCase',
+              modules: {
+                exportLocalsConvention: 'camelCase'
+              },
               sourceMap: true
             }
           },
